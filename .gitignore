@@ -234,3 +234,15 @@ pip-log.txt
 ## Maven Target Folder
 ##############
 target/
+
+# ZEINTELLIJ
+.idea
+*.iml
+workspace.xml
+tasks.xml
+.idea/libraries
+.idea/copyright
+out/
+target/
+*.MF
+*.name

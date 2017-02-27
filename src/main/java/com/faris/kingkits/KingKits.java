@@ -199,11 +199,11 @@ public class KingKits extends JavaPlugin {
 			this.allowJoining = false;
 			boolean kickPlayers = !(DataStorage.getInstance() instanceof FlatFileStorage);
 			this.getServer().getLogger().warning("Player data was not saved from last restart/shutdown. " + (!kickPlayers ? "Storing data..." : "Kicking all players and uploading the data."));
-			if (kickPlayers) {
-				for (Player onlinePlayer : this.getServer().getOnlinePlayers()) {
-					onlinePlayer.kickPlayer(ChatColor.RED + "Sorry! Uploading player data..." + ChatColor.RESET + System.lineSeparator() + ChatColor.RED + "Please wait patiently.");
-				}
-			}
+//			if (kickPlayers) {
+//				for (Player onlinePlayer : this.getServer().getOnlinePlayers()) {
+//					onlinePlayer.kickPlayer(ChatColor.RED + "Sorry! Uploading player data..." + ChatColor.RESET + System.lineSeparator() + ChatColor.RED + "Please wait patiently.");
+//				}
+//			}
 			for (final Map.Entry<String, Object> playerEntry : new HashMap<>(ConfigController.getInstance().getPlayersConfig().getValues(false)).entrySet()) {
 				try {
 					OfflineKitPlayer deserializedPlayer = OfflineKitPlayer.deserialize(ObjectUtilities.getMap(playerEntry.getValue()));
@@ -238,21 +238,6 @@ public class KingKits extends JavaPlugin {
 		this.getCommand("refill").setExecutor(new CommandRefill(this));
 
 		Permissions.initialisePermissions();
-
-		try {
-			for (Player player : this.getServer().getOnlinePlayers()) {
-				this.eventListener.handleJoinEvent(player);
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-
-		try {
-			Metrics metrics = new Metrics(this);
-			metrics.start();
-		} catch (Exception ex) {
-			this.getLogger().log(Level.INFO, "Failed to start metrics", ex);
-		}
 	}
 
 	@Override

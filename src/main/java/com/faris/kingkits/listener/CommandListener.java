@@ -80,14 +80,6 @@ public class CommandListener implements CommandExecutor {
 									}
 								}
 
-								try {
-									for (Player player : sender.getServer().getOnlinePlayers()) {
-										this.plugin.getEventListener().handleJoinEvent(player);
-									}
-								} catch (Exception ex) {
-									ex.printStackTrace();
-								}
-
 								this.plugin.startAutoSaveTask();
 
 								Messages.initMessages(this.plugin);
